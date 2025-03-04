@@ -1,196 +1,191 @@
-# Electricity Utility System - Test Scenarios
+# Test Scenarios
 
-## Core Features
+## Overview
+This document outlines the test scenarios for the Electricity Utility System, organized by domain. Each scenario includes its acceptance criteria and related feature file.
 
-### 1. User Management
+## Authentication Domain
 
-```gherkin
-Feature: User Authentication
-  As a system user
-  I want to authenticate myself
-  So that I can access the system securely
+### Feature: User Authentication
+**File:** test/resources/features/user_authentication.feature
 
-  Scenario: Successful login
-    Given I am a registered user
-    When I enter valid credentials
-    Then I should be logged into the system
-    And I should see my dashboard
+1. Scenario: Successful login
+   - Given: I am a registered user
+   - When: I enter valid credentials
+   - Then: I should be logged into the system
+   - And: I should see my dashboard
 
-  Scenario: Failed login
-    Given I am a user
-    When I enter invalid credentials
-    Then I should see an error message
-    And I should remain on the login page
-```
+2. Scenario: Failed login
+   - Given: I am a user
+   - When: I enter invalid credentials
+   - Then: I should see an error message
+   - And: I should remain on the login page
 
-### 2. Grid Management
+## Billing Domain
 
-```gherkin
-Feature: Grid Monitoring
-  As a grid operator
-  I want to monitor grid status
-  So that I can ensure reliable power distribution
+### Feature: Bill Generation
+**File:** test/resources/features/bill_generation.feature
 
-  Scenario: View grid status
-    Given I am a logged-in grid operator
-    When I access the grid monitoring dashboard
-    Then I should see real-time grid status
-    And I should see any active alerts
+1. Scenario: Generate monthly bill
+   - Given: I am a billing administrator
+   - When: I initiate monthly billing
+   - Then: Bills should be generated for all active accounts
+   - And: Should include all consumption data
 
-  Scenario: Handle grid alert
-    Given I am a logged-in grid operator
-    When a grid alert is triggered
-    Then I should receive immediate notification
-    And I should see detailed alert information
-```
+2. Scenario: View bill details
+   - Given: I am a logged-in customer
+   - When: I access my billing section
+   - Then: I should see my current bill
+   - And: I should see payment history
 
-### 3. Metering System
+## Remaining Domains to Document
 
-```gherkin
-Feature: Consumption Monitoring
-  As a customer
-  I want to monitor my electricity consumption
-  So that I can manage my usage effectively
+### Grid Monitoring
+**File:** test/resources/features/grid_monitoring.feature
 
-  Scenario: View consumption data
-    Given I am a logged-in customer
-    When I access my consumption dashboard
-    Then I should see my current consumption
-    And I should see historical usage patterns
+1. Scenario: View grid status
+   - Given: I am a logged-in grid operator
+   - When: I access the grid monitoring dashboard
+   - Then: I should see real-time grid status
+   - And: I should see any active alerts
 
-  Scenario: Real-time updates
-    Given I am viewing my consumption dashboard
-    When new consumption data is available
-    Then the dashboard should update automatically
-    And show the latest readings
-```
+2. Scenario: Handle grid alert
+   - Given: I am a logged-in grid operator
+   - When: A grid alert is triggered
+   - Then: I should receive immediate notification
+   - And: I should see detailed alert information
 
-### 4. Billing System
+### Consumption Monitoring
+**File:** test/resources/features/consumption_monitoring.feature
 
-```gherkin
-Feature: Bill Generation
-  As a billing administrator
-  I want to generate customer bills
-  So that customers can be charged correctly
+1. Scenario: View consumption data
+   - Given: I am a logged-in customer
+   - When: I access my consumption dashboard
+   - Then: I should see my current consumption
+   - And: I should see historical usage patterns
 
-  Scenario: Generate monthly bill
-    Given I am a billing administrator
-    When I initiate monthly billing
-    Then bills should be generated for all active accounts
-    And should include all consumption data
+2. Scenario: Real-time updates
+   - Given: I am viewing my consumption dashboard
+   - When: New consumption data is available
+   - Then: The dashboard should update automatically
+   - And: Show the latest readings
 
-  Scenario: View bill details
-    Given I am a logged-in customer
-    When I access my billing section
-    Then I should see my current bill
-    And I should see payment history
-```
+### Data Security
+**File:** test/resources/features/data_security.feature
 
-### 5. Customer Service
+1. Scenario: Encrypt sensitive data
+   - Given: Sensitive data is being transmitted
+   - When: The data is in transit
+   - Then: It should be encrypted
+   - And: Secure from unauthorized access
 
-```gherkin
-Feature: Service Request Management
-  As a customer
-  I want to submit service requests
-  So that I can get support when needed
+2. Scenario: Audit trail
+   - Given: A user performs sensitive operations
+   - When: The operation is completed
+   - Then: It should be logged in audit trail
+   - And: Include relevant operation details
 
-  Scenario: Submit service request
-    Given I am a logged-in customer
-    When I submit a service request
-    Then the request should be recorded
-    And I should receive a confirmation
+### Online Payment
+**File:** test/resources/features/online_payment.feature
 
-  Scenario: Track request status
-    Given I have submitted a service request
-    When I check the request status
-    Then I should see the current status
-    And any updates to my request
-```
+1. Scenario: Successful payment
+   - Given: I am viewing my bill
+   - When: I make a payment using valid payment method
+   - Then: The payment should be processed
+   - And: I should receive a receipt
 
-## Integration Features
+2. Scenario: Failed payment
+   - Given: I am viewing my bill
+   - When: I make a payment using invalid payment method
+   - Then: I should see an error message
+   - And: My bill should remain unpaid
 
-### 1. Payment Processing
+### Role Based Access
+**File:** test/resources/features/role_based_access.feature
 
-```gherkin
-Feature: Online Payment
-  As a customer
-  I want to pay my bill online
-  So that I can settle my account conveniently
+1. Scenario: Assign user role
+   - Given: I am a system administrator
+   - When: I assign a role to a user
+   - Then: The user should have appropriate permissions
+   - And: Access to relevant features
 
-  Scenario: Successful payment
-    Given I am viewing my bill
-    When I make a payment using valid payment method
-    Then the payment should be processed
-    And I should receive a receipt
+2. Scenario: Restrict access
+   - Given: I am a user with limited permissions
+   - When: I attempt to access restricted features
+   - Then: I should be denied access
+   - And: See an appropriate message
 
-  Scenario: Failed payment
-    Given I am viewing my bill
-    When I make a payment using invalid payment method
-    Then I should see an error message
-    And my bill should remain unpaid
-```
+### Service Request Management
+**File:** test/resources/features/service_request_management.feature
 
-### 2. Data Analytics
+1. Scenario: Submit service request
+   - Given: I am a logged-in customer
+   - When: I submit a service request
+   - Then: The request should be recorded
+   - And: I should receive a confirmation
 
-```gherkin
-Feature: Usage Analytics
-  As a system analyst
-  I want to analyze consumption patterns
-  So that I can identify trends and anomalies
+2. Scenario: Track request status
+   - Given: I have submitted a service request
+   - When: I check the request status
+   - Then: I should see the current status
+   - And: Any updates to my request
 
-  Scenario: Generate usage report
-    Given I am a system analyst
-    When I request a usage analysis report
-    Then the system should generate the report
-    And show consumption patterns and trends
+### Usage Analytics
+**File:** test/resources/features/usage_analytics.feature
 
-  Scenario: Detect anomalies
-    Given I am monitoring usage patterns
-    When an unusual consumption pattern occurs
-    Then the system should flag the anomaly
-    And generate an alert for investigation
-```
+1. Scenario: Generate usage report
+   - Given: I am a system analyst
+   - When: I request a usage analysis report
+   - Then: The system should generate the report
+   - And: Show consumption patterns and trends
 
-## Security Features
+2. Scenario: Detect anomalies
+   - Given: I am monitoring usage patterns
+   - When: An unusual consumption pattern occurs
+   - Then: The system should flag the anomaly
+   - And: Generate an alert for investigation
 
-### 1. Access Control
+## Test Coverage Matrix
 
-```gherkin
-Feature: Role-based Access
-  As a system administrator
-  I want to manage user roles
-  So that users can access appropriate features
+### Core Functionality Coverage
+- [x] User Authentication
+- [x] Bill Generation
+- [x] Grid Monitoring
+- [x] Consumption Monitoring
+- [x] Data Security
+- [x] Online Payment
+- [x] Role Based Access
+- [x] Service Request Management
+- [x] Usage Analytics
 
-  Scenario: Assign user role
-    Given I am a system administrator
-    When I assign a role to a user
-    Then the user should have appropriate permissions
-    And access to relevant features
+### Test Types Coverage
+1. Functional Tests
+   - User acceptance scenarios
+   - Business logic validation
+   - Integration points
 
-  Scenario: Restrict access
-    Given I am a user with limited permissions
-    When I attempt to access restricted features
-    Then I should be denied access
-    And see an appropriate message
-```
+2. Security Tests
+   - Authentication
+   - Authorization
+   - Data protection
 
-### 2. Data Protection
+3. Performance Tests
+   - Response time
+   - Resource utilization
+   - Scalability
 
-```gherkin
-Feature: Data Security
-  As a system operator
-  I want to ensure data protection
-  So that sensitive information remains secure
+## Test Execution Strategy
+1. Prerequisites
+   - Test environment setup
+   - Test data preparation
+   - Required permissions
 
-  Scenario: Encrypt sensitive data
-    Given sensitive data is being transmitted
-    When the data is in transit
-    Then it should be encrypted
-    And secure from unauthorized access
+2. Execution Order
+   - Authentication tests first
+   - Core functionality tests
+   - Integration tests
+   - Performance tests
 
-  Scenario: Audit trail
-    Given a user performs sensitive operations
-    When the operation is completed
-    Then it should be logged in audit trail
-    And include relevant operation details
-```
+3. Test Data Management
+   - Test data isolation
+   - Data cleanup
+   - State management

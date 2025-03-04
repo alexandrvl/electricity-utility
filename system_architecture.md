@@ -1,154 +1,101 @@
-# Electricity Utility System - System Architecture
+# System Architecture
 
 ## Architecture Overview
-The system follows a modular, layered architecture pattern with clear separation of concerns and emphasis on maintainability, scalability, and security.
+The Electricity Utility System follows a modular, domain-driven design approach with clear separation of concerns.
 
-## Core Architecture Principles
-1. Modularity
-   - Independent functional modules
-   - Loose coupling between components
-   - High cohesion within modules
-   - Clear interface definitions
+## Core Architectural Patterns
+1. Domain-Driven Design
+   - Clearly defined domain models
+   - Bounded contexts for different utility operations
+   - Rich domain model with business logic encapsulation
 
-2. Layered Architecture
-   - Presentation Layer
-     * User interface components
-     * API endpoints
-     * Client communication
-   - Business Layer
-     * Business logic
-     * Service orchestration
-     * Domain models
-   - Data Layer
-     * Data access
-     * Storage management
-     * Cache handling
+2. Contract-First Development
+   - Interface-driven development
+   - Clear contract definitions
+   - Strict separation between contracts and implementations
 
-3. Cross-Cutting Concerns
-   - Security
-   - Logging
-   - Monitoring
-   - Error handling
-   - Configuration management
+3. Layered Architecture
+   - Presentation Layer (UI/API)
+   - Application Layer (Use Cases)
+   - Domain Layer (Business Logic)
+   - Infrastructure Layer (External Services)
 
-## System Components
+## Domain Structure
+1. Core Domains
+   - Billing
+   - Grid Monitoring
+   - Consumption Monitoring
+   - User Authentication
+   - Role-Based Access
+   - Data Security
+   - Service Request
+   - Usage Analytics
+   - Online Payment
 
-### 1. Core Modules
-1. User Management
-   - Authentication
-   - Authorization
-   - User profiles
-   - Access control
+2. Domain Relationships
+   - Clear boundaries between domains
+   - Defined integration points
+   - Explicit dependencies
 
-2. Grid Management
-   - Network topology
-   - Load balancing
-   - Distribution management
-   - Outage handling
+## Testing Architecture
+1. Behavior-Driven Development (BDD)
+   - Gherkin feature files
+   - Step definitions
+   - Domain-specific test implementations
 
-3. Metering System
-   - Data collection
-   - Real-time monitoring
-   - Consumption analysis
-   - Meter management
+2. Test Structure
+   - Feature specifications
+   - Contract definitions
+   - Step interfaces
+   - Implementation tests
 
-4. Billing System
-   - Rate management
-   - Invoice generation
-   - Payment processing
-   - Account management
+## Security Architecture
+1. Security by Design
+   - Role-based access control
+   - Data security measures
+   - Authentication and authorization
+   - Secure communication
 
-5. Customer Service
-   - Service requests
-   - Complaint management
-   - Communication
-   - Self-service portal
-
-### 2. Integration Layer
-- External system interfaces
-- API gateway
-- Event bus
-- Message queues
-
-### 3. Data Management
-- Time-series data
-- Operational data
-- Analytics data
-- Master data
-
-## Technical Architecture
-
-### 1. Infrastructure
-- Cloud-native design
-- Containerization
-- Microservices support
-- Scalable deployment
-
-### 2. Security Architecture
-- Identity management
-- Access control
-- Data encryption
-- Audit logging
-- Security monitoring
-
-### 3. Data Architecture
-- Data models
-- Storage strategies
-- Caching mechanisms
-- Data flow patterns
+## Integration Architecture
+1. Service Integration
+   - Clear interface contracts
+   - Dependency injection
+   - Modular component design
 
 ## Quality Attributes
+1. Maintainability
+   - Modular design
+   - Clear separation of concerns
+   - Interface-based contracts
 
-### 1. Performance
-- Response time targets
-- Throughput requirements
-- Scalability patterns
-- Resource optimization
+2. Scalability
+   - Independent domain scaling
+   - Modular component design
+   - Loose coupling
 
-### 2. Reliability
-- Fault tolerance
-- Recovery mechanisms
-- Data consistency
-- System resilience
+3. Testability
+   - Contract-first approach
+   - BDD test structure
+   - Clear test boundaries
 
-### 3. Maintainability
-- Code organization
-- Documentation
-- Testing strategy
-- Deployment automation
+## Technical Stack
+1. Development
+   - Kotlin programming language
+   - Test-driven development
+   - BDD framework
 
-### 4. Security
-- Authentication
-- Authorization
-- Data protection
-- Compliance
+2. Testing
+   - Gherkin for specifications
+   - Domain-specific test implementations
+   - Automated test infrastructure
 
-## Integration Patterns
-1. Synchronous
-   - REST APIs
-   - GraphQL
-   - Direct calls
+## Future Considerations
+1. Extensibility
+   - Plugin architecture support
+   - New domain integration
+   - Feature expansion capability
 
-2. Asynchronous
-   - Event-driven
-   - Message queues
-   - Pub/sub patterns
-
-## Deployment Architecture
-1. Environment Strategy
-   - Development
-   - Testing
-   - Staging
-   - Production
-
-2. Infrastructure Components
-   - Load balancers
-   - Application servers
-   - Database clusters
-   - Cache layers
-
-3. Monitoring
-   - System metrics
-   - Performance monitoring
-   - Error tracking
-   - Usage analytics
+2. Evolution
+   - Version management
+   - Backward compatibility
+   - Migration strategies
